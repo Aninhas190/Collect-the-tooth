@@ -5,7 +5,7 @@ class Character {
   constructor(game) {
     this.game = game;
     this.position = {
-      x: 0,
+      x: 750,
       y: 370
     };
     this.dimensions = {
@@ -22,7 +22,7 @@ class Character {
 
   jump() { 
     if (this.position.y > 10) {
-      this.velocity.y -= 5;
+      this.velocity.y -= 8;
     }
   }
 
@@ -50,24 +50,21 @@ class Character {
       y: position.y + newVelocity.y
     };
 
-    for (let obstacle of this.game.platforms ) {
-      const horizontalIntersection = obstacle.checkIntersection({
+    for (let platform of this.game.platforms ) {
+      const horizontalIntersection = platform.checkIntersection({
         position: {
           ...position,
           x: newPosition.x
         },
         dimensions
       });
-
-      const verticalIntersection = obstacle.checkIntersection({
+      const verticalIntersection = platform.checkIntersection({
         position: {
           ...position,
           y: newPosition.y
         },
         dimensions
       });
-
-
       if (verticalIntersection) {
         newVelocity.y = 0;
         newPosition.y = position.y;
@@ -76,10 +73,11 @@ class Character {
         newVelocity.x = 0;
         newPosition.x = position.x;
       }
-
     }
+    
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);
+    
   }
 
   drawCharacter() {
