@@ -6,22 +6,22 @@ class Character {
     this.game = game;
     this.position = {
       x: 100,
-      y: 390
+      y: 370
     };
     this.dimensions = {
-      x: 290,
-      y: 200
+      x: 290/2,
+      y: 200/2
     };
     this.velocity = {
       x: 0,
       y: 0
     };
-    this.gravity = 8;
-    this.friction = 10;
+    this.gravity = 10;
+    this.friction = 15;
   }
 
   jump() {
-    this.velocity.y -= 3;
+    this.velocity.y -= 5;
   }
 
   moveLeft() {
@@ -31,7 +31,6 @@ class Character {
   moveRight() {
     this.velocity.x += 1 * 2;
   }
-
 
   runLogic() {
     const { position, dimensions, velocity, gravity, friction } = this;
@@ -44,16 +43,17 @@ class Character {
       x: position.x + newVelocity.x,
       y: position.y + newVelocity.y
     };
-    console.log(newPosition)
 
     for (let obstacle of this.game.obstacles) {
-      /*const horizontalIntersection = obstacle.checkIntersection({
+      const horizontalIntersection = obstacle.checkIntersection({
         position: {
           ...position,
           x: newPosition.x
         },
         dimensions
-      });*/
+      });
+      //console.log('hor', horizontalIntersection);
+
       const verticalIntersection = obstacle.checkIntersection({
         position: {
           ...position,
@@ -61,14 +61,21 @@ class Character {
         },
         dimensions
       });
+
+      //console.log('ver', verticalIntersection);
+
       if (verticalIntersection) {
         newVelocity.y = 0;
         newPosition.y = position.y;
       }
-      /*if (horizontalIntersection) {
+      if (horizontalIntersection) {
         newVelocity.x = 0;
         newPosition.x = position.x;
-      }*/
+      }
+
+      if (position.y > 540) {
+        newPosition.y = 540;
+      }
     }
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);
@@ -81,9 +88,12 @@ class Character {
       dimensions: { x: playerWidth, y: playerHeight }
     } = this;
     context.save();
+    context.beginPath();
+    context.rect(x, y, playerWidth, playerHeight);
+    context.stroke();
     context.drawImage(characterImage, x, y, playerWidth, playerHeight);
     //window.addEventListener('load', (event) => {
-      //context.drawImage(characterImage, x, y, playerWidth, playerHeight);
+    //context.drawImage(characterImage, x, y, playerWidth, playerHeight);
     //});
     context.restore();
   }

@@ -28,8 +28,11 @@ class Obstacle {
   checkIntersection (player) {
     const obstacle = this;
     const playerBlock = getCoordinates(player);
+    //console.log(playerBlock)
     const obstacleBlock = getCoordinates(obstacle);
+    //console.log(obstacleBlock)
     const intersection = checkIntersection(playerBlock, obstacleBlock);
+    //console.log(intersection)
     return intersection;
   }
 

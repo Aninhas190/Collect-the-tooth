@@ -30,41 +30,22 @@ class Game {
     this.background = new Background(this);
     this.obstacles = [];
     this.randomizeObstacles();
-    //this.obstacle = new Obstacle(this, {x: 0, y: 550, width: 1000, height: 600});
     this.player = new Character(this);
     this.loop();
   }
-
 
   clearCanvas() {
     this.context.clearRect(0, 0, this.width, this.height);
   }
 
-  
   randomizeObstacles() {
     const width = this.width;
     const height = this.height;
-    this.obstacles.push(new Obstacle(this, {
-      x: 0,
-      y: height - 50,
-      width,
-      height: 600
-    }))
-    for (let i = 0; i < 2; i++) {
-      const obstacle = new Obstacle(this, {
-        x: 400 + i * 200,
-        y: 350 - i * 100,
-        width: 100,
-        height: 50
-      });
-      this.obstacles.push(obstacle);
-    }
-    /*const obstacle = new Obstacle(this, {
-      x: 80,
-      y: 200,
-      width: 20,
-      height: 100
-    });*/
+    this.obstacles.push(
+      new Obstacle(this, {
+        x: 0, y: 550, width: 1000, height: 600
+      })
+    );  
   }
 
   runLogic() {
@@ -77,10 +58,11 @@ class Game {
     this.player.drawCharacter();
   }
 
-  loop () {
+  loop() {
+    //console.log('loop is runing');
     this.runLogic();
     this.clearCanvas();
     this.drawGame();
-    window.requestAnimationFrame(timestamp => this.loop(timestamp));
+    window.requestAnimationFrame((timestamp) => this.loop(timestamp));
   }
 }
