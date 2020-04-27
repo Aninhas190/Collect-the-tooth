@@ -69,7 +69,6 @@ class Game {
 
   runLogic() {
     this.player.runLogic();
-    this.player.drawCharacter();
   }
 
   drawGame() {
