@@ -5,46 +5,52 @@ class Character {
   constructor(game) {
     this.game = game;
     this.position = {
-      x: 100,
+      x: 0,
       y: 370
     };
     this.dimensions = {
-      x: 290/2,
-      y: 200/2
+      x: 90,
+      y: 60
     };
     this.velocity = {
       x: 0,
       y: 0
     };
-    this.gravity = 10;
-    this.friction = 15;
+    this.gravity = 15;
+    this.friction = 10;
   }
 
-  jump() {
-    this.velocity.y -= 5;
+  jump() { 
+    if (this.position.y > 10) {
+      this.velocity.y -= 5;
+    }
   }
 
   moveLeft() {
-    this.velocity.x -= 1 * 2;
+    if(this.position.x >= 10) {
+      this.velocity.x -= 1.5;
+    }  
   }
 
   moveRight() {
-    this.velocity.x += 1 * 2;
+    if (this.position.x <= 890) {
+      this.velocity.x += 1.5;
+    }
   }
 
   runLogic() {
     const { position, dimensions, velocity, gravity, friction } = this;
 
     let newVelocity = {
-      x: velocity.x / (1 + (friction / 1000) * 16),
-      y: velocity.y + (gravity / 1000) * 16
+      x: velocity.x / (1 + (friction / 1000) * 20),
+      y: velocity.y + (gravity / 1000) * 20
     };
     let newPosition = {
       x: position.x + newVelocity.x,
       y: position.y + newVelocity.y
     };
 
-    for (let obstacle of this.game.obstacles) {
+    for (let obstacle of this.game.platforms ) {
       const horizontalIntersection = obstacle.checkIntersection({
         position: {
           ...position,
@@ -52,7 +58,6 @@ class Character {
         },
         dimensions
       });
-      //console.log('hor', horizontalIntersection);
 
       const verticalIntersection = obstacle.checkIntersection({
         position: {
@@ -62,7 +67,6 @@ class Character {
         dimensions
       });
 
-      //console.log('ver', verticalIntersection);
 
       if (verticalIntersection) {
         newVelocity.y = 0;
@@ -73,9 +77,6 @@ class Character {
         newPosition.x = position.x;
       }
 
-      if (position.y > 540) {
-        newPosition.y = 540;
-      }
     }
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);

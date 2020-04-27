@@ -17,7 +17,7 @@ const getCoordinates = object => ({
   ...object
 });
 
-class Obstacle {
+class Platform {
   constructor(game, {x, y, width, height}) {
     this.game = game;
     this.position = { x, y };
@@ -26,17 +26,17 @@ class Obstacle {
   
 
   checkIntersection (player) {
-    const obstacle = this;
+    const platform = this;
     const playerBlock = getCoordinates(player);
     //console.log(playerBlock)
-    const obstacleBlock = getCoordinates(obstacle);
+    const platformBlock = getCoordinates(platform);
     //console.log(obstacleBlock)
-    const intersection = checkIntersection(playerBlock, obstacleBlock);
+    const intersection = checkIntersection(playerBlock, platformBlock);
     //console.log(intersection)
     return intersection;
   }
 
-  drawObstacle() {
+  drawPlatforms() {
     const context = this.game.context;
     let {
       position: { x, y},

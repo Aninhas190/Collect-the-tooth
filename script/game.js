@@ -28,7 +28,7 @@ class Game {
 
   startGame() {
     this.background = new Background(this);
-    this.obstacles = [];
+    this.platforms = [];
     this.randomizeObstacles();
     this.player = new Character(this);
     this.loop();
@@ -41,11 +41,8 @@ class Game {
   randomizeObstacles() {
     const width = this.width;
     const height = this.height;
-    this.obstacles.push(
-      new Obstacle(this, {
-        x: 0, y: 550, width: 1000, height: 600
-      })
-    );  
+    this.platforms.push(new Platform(this, { x: 0, y: 550, width: 1000, height: 600 }));
+    this.platforms.push(new Platform(this, { x: 300, y: 350, width: 100, height: 50}));
   }
 
   runLogic() {
@@ -54,7 +51,7 @@ class Game {
 
   drawGame() {
     this.background.drawBackground();
-    for (let obstacle of this.obstacles) obstacle.drawObstacle();
+    for (let platform of this.platforms) platform.drawPlatforms();
     this.player.drawCharacter();
   }
 
