@@ -5,7 +5,7 @@ class Character {
   constructor(game) {
     this.game = game;
     this.position = {
-      x: 750,
+      x: 0,
       y: 370
     };
     this.dimensions = {
@@ -16,13 +16,13 @@ class Character {
       x: 0,
       y: 0
     };
-    this.gravity = 15;
+    this.gravity = 10;
     this.friction = 10;
   }
 
   jump() { 
-    if (this.position.y > 10) {
-      this.velocity.y -= 8;
+    if (this.position.y > 250) {
+      this.velocity.y -= 10;
     }
   }
 
@@ -73,6 +73,27 @@ class Character {
         newVelocity.x = 0;
         newPosition.x = position.x;
       }
+    }
+    const lake = this.game.lake;
+    const horizontalWaterIntersection = lake.checkFall({
+      position: {
+        ...position,
+        x: newPosition.x
+      },
+      dimensions
+    });
+    const verticalWaterIntersection = lake.checkFall({
+      position: {
+        ...position,
+        y: newPosition.y
+      },
+      dimensions
+    });
+    if (verticalWaterIntersection) {
+      this.game.gameOver();
+    }
+    if (horizontalWaterIntersection) {
+      this.game.gameOver();
     }
     
     Object.assign(this.velocity, newVelocity);

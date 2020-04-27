@@ -24,6 +24,14 @@ class Lake {
     this.dimensions = { x: 450, y: 600};
   }
 
+  checkFall (player){
+    const lake = this;
+    const playerBlock = getCoordinatesFall(player);
+    const lakeBlock = getCoordinatesFall(lake);
+    const intersection = checkFall(playerBlock, lakeBlock);
+    return intersection;
+  }
+
   drawLake () {
     const context = this.game.context;
     let {

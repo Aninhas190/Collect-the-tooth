@@ -10,6 +10,10 @@ class Game {
     this.setKeyBindings();
   }
 
+  gameOver() {
+    this.characterDie = true;
+  }
+
   setKeyBindings() {
     window.addEventListener('keydown', (event) => {
       const keyCode = event.keyCode;
@@ -28,10 +32,6 @@ class Game {
     });
   }
 
-  endOfGame() {
-    if (this.player.position === this.end.position) {
-    }
-  }
 
   startGame() {
     this.background = new Background(this);
@@ -48,10 +48,12 @@ class Game {
   }
 
   randomizePlatforms() {
+    //floor left and righ
     this.platforms.push(new Platform(this, { x: 0, y: 550, width: 310, height: 600 }));
     this.platforms.push(new Platform(this, { x: 750, y: 550, width: 1000, height: 600 }));
-    this.platforms.push(new Platform(this, { x: 300, y: 350, width: 100, height: 50 }));
-    this.platforms.push(new Platform(this, { x: 650, y: 350, width: 100, height: 50 }));
+    //platforms
+    this.platforms.push(new Platform(this, { x: 350, y: 400, width: 100, height: 50 }));
+    this.platforms.push(new Platform(this, { x: 600, y: 400, width: 100, height: 50 }));
   }
 
   runLogic() {
@@ -59,10 +61,6 @@ class Game {
     if (this.player.position.x + this.player.dimensions.x >= this.end.position.x) {
       //the character won
       this.levelWon = true;
-      // console.log('you win!')
-    }
-    if (this.player.position.x > this.width && this.player.position.x < 0 && this.player.position.y > this.height && this.player.position.y < 0) {
-      this.characterDie = true;
     }
   }
 
@@ -79,7 +77,8 @@ class Game {
     this.runLogic();
     this.clearCanvas();
     !this.levelWon ? this.drawGame() : this.background.drawWin();
-    !this.characterDie ? this.drawGame() : this.background.drawGameOver();
+    !this.characterDie ? this.drawGame() : this.background.drawGameOver();~
+    console.log(this.characterDie);
     if (!this.levelWon || !this.characterDie) {
       window.requestAnimationFrame((timestamp) => this.loop(timestamp));
     }
