@@ -76,10 +76,15 @@ class Game {
     //console.log('loop is runing');
     this.runLogic();
     this.clearCanvas();
-    !this.levelWon ? this.drawGame() : this.background.drawWin();
-    !this.characterDie ? this.drawGame() : this.background.drawGameOver();~
-    console.log(this.characterDie);
-    if (!this.levelWon || !this.characterDie) {
+    if (!this.levelWon && !this.characterDie) {
+      this.drawGame()
+    } else if (this.levelWon) {
+       this.background.drawWin();
+    } else {
+      this.background.drawGameOver();
+    }
+
+    if (!this.levelWon && !this.characterDie) {
       window.requestAnimationFrame((timestamp) => this.loop(timestamp));
     }
   }

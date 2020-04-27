@@ -28,11 +28,8 @@ class Platform {
   checkIntersection (player) {
     const platform = this;
     const playerBlock = getCoordinates(player);
-    //console.log(playerBlock)
     const platformBlock = getCoordinates(platform);
-    //console.log(obstacleBlock)
     const intersection = checkIntersection(playerBlock, platformBlock);
-    //console.log(intersection)
     return intersection;
   }
 
