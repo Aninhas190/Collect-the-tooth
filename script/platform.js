@@ -1,3 +1,7 @@
+const platformImage = new Image();
+platformImage.src = '/image/Grass.png';
+
+
 const checkIntersection = (first, second) => {
   const intersectionDirections = [];
   const intersectionAxis = [];
@@ -40,10 +44,12 @@ class Platform {
       dimensions: {x: width, y: height}
     } = this;
     context.save();
+    context.drawImage(platformImage, x, y, width, height);
 
+    /*
     context.fillStyle = '#006b3c';
     context.fillRect(x, y, width, height);
-
+    */
     context.restore();
   }
 

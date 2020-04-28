@@ -16,7 +16,7 @@ class Character {
       x: 0,
       y: 0
     };
-    this.gravity = 10;
+    this.gravity = 15;
     this.friction = 10;
   }
 
@@ -36,6 +36,10 @@ class Character {
     if (this.position.x <= 890) {
       this.velocity.x += 1.5;
     }
+  }
+
+  stop() {
+    this.velocity = {x: 0, y: 0};
   }
 
   runLogic() {
@@ -95,7 +99,6 @@ class Character {
     if (horizontalWaterIntersection) {
       this.game.gameOver();
     }
-    
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);
     

@@ -1,8 +1,8 @@
 class FinishPoint {
   constructor(game) {
     this.game = game
-    this.position = { x: 900, y: 400};
-    this.dimension = { x: 950, y: 450};
+    this.position = { x: 750, y: 350};
+    this.dimension = { x: 800, y: 450};
   }
 
 

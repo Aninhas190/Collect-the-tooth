@@ -1,3 +1,6 @@
+const waterImage = new Image();
+waterImage.src = '/image/water-image.png';
+
 const checkFall = (first, second) => {
   const intersectionDirections = [];
   const intersectionAxis = [];
@@ -7,9 +10,9 @@ const checkFall = (first, second) => {
     first.right > second.left &&
     first.left < second.right
   );
-}
+};
 
-const getCoordinatesFall = object => ({
+const getCoordinatesFall = (object) => ({
   top: object.position.y,
   right: object.position.x + object.dimensions.x,
   bottom: object.position.y + object.dimensions.y,
@@ -20,11 +23,11 @@ const getCoordinatesFall = object => ({
 class Lake {
   constructor(game) {
     this.game = game;
-    this.position = { x: 300, y: 550};
-    this.dimensions = { x: 450, y: 600};
+    this.position = { x: 200, y: 450 };
+    this.dimensions = { x: 450, y: 500 };
   }
 
-  checkFall (player){
+  checkFall(player) {
     const lake = this;
     const playerBlock = getCoordinatesFall(player);
     const lakeBlock = getCoordinatesFall(lake);
@@ -32,18 +35,19 @@ class Lake {
     return intersection;
   }
 
-  drawLake () {
+  drawLake() {
     const context = this.game.context;
     let {
-      position: { x, y},
-      dimensions: {x: width, y: height}
+      position: { x, y },
+      dimensions: { x: width, y: height }
     } = this;
     context.save();
+
+    //context.drawImage(waterImage, x, y, width, height);
 
     context.fillStyle = '#00BFFF';
     context.fillRect(x, y, width, height);
 
     context.restore();
   }
-
 }

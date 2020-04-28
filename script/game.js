@@ -6,40 +6,20 @@ class Game {
     this.width = this.$canvas.width;
     this.levelWon = false;
     this.characterDie = false;
-
-    this.setKeyBindings();
   }
 
   gameOver() {
     this.characterDie = true;
   }
 
-  setKeyBindings() {
-    window.addEventListener('keydown', (event) => {
-      const keyCode = event.keyCode;
-      event.preventDefault();
-      switch (keyCode) {
-        case 32:
-          this.player.jump();
-          break;
-        case 37:
-          this.player.moveLeft();
-          break;
-        case 39:
-          this.player.moveRight();
-          break;
-      }
-    });
-  }
-
-
   startGame() {
     this.background = new Background(this);
-    this.platforms = [];
-    this.randomizePlatforms();
+    this.player = new Character(this);
     this.lake = new Lake(this);
     this.end = new FinishPoint(this);
-    this.player = new Character(this);
+    this.controller = new Controller(this,this.player);
+    this.platforms = [];
+    this.randomizePlatforms();
     this.loop();
   }
 
@@ -49,11 +29,11 @@ class Game {
 
   randomizePlatforms() {
     //floor left and righ
-    this.platforms.push(new Platform(this, { x: 0, y: 550, width: 310, height: 600 }));
-    this.platforms.push(new Platform(this, { x: 750, y: 550, width: 1000, height: 600 }));
+    this.platforms.push(new Platform(this, { x: 0, y: 450, width: 200, height: 500 }));
+    this.platforms.push(new Platform(this, { x: 650, y: 450, width: 800, height: 500 }));
     //platforms
-    this.platforms.push(new Platform(this, { x: 350, y: 400, width: 100, height: 50 }));
-    this.platforms.push(new Platform(this, { x: 600, y: 400, width: 100, height: 50 }));
+    this.platforms.push(new Platform(this, { x: 250, y: 320, width: 100, height: 50 }));
+    this.platforms.push(new Platform(this, { x: 500, y: 320, width: 100, height: 50 }));
   }
 
   runLogic() {
@@ -74,17 +54,17 @@ class Game {
 
   loop() {
     //console.log('loop is runing');
-    this.runLogic();
     this.clearCanvas();
+    this.runLogic();
     if (!this.levelWon && !this.characterDie) {
-      this.drawGame()
+      this.drawGame();
     } else if (this.levelWon) {
-       this.background.drawWin();
+      this.background.drawWin();
     } else {
       this.background.drawGameOver();
     }
 
-    if (!this.levelWon && !this.characterDie) {
+    if (!this.levelWon || !this.characterDie) {
       window.requestAnimationFrame((timestamp) => this.loop(timestamp));
     }
   }
