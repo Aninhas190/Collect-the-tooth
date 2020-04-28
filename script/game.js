@@ -52,20 +52,20 @@ class Game {
     this.platforms.push(new Platform(this, { x: 500, y: 320, width: 100, height: 50 }));
   }
 
-  runLogic() {
-    this.player.runLogic();
-    if (this.player.position.x + this.player.dimensions.x >= this.end.position.x) {
-      //the character won
-      this.levelWon = true;
-    }
-  }
-
   drawGame() {
     this.background.drawBackground();
     for (let platform of this.platforms) platform.drawPlatforms();
     this.lake.drawLake();
     this.end.drawEnd();
     this.player.drawCharacter();
+  }
+
+  runLogic() {
+    this.player.runLogic();
+    if (this.player.position.x + this.player.dimensions.x >= this.end.position.x) {
+      //the character won
+      this.levelWon = true;
+    }
   }
 
   loop() {

@@ -1,10 +1,18 @@
-class Level1 {
-  constructor(game) {
+class Level {
+  constructor (game) {
     this.game = game;
-    this.context = this.game.context;
-    this.levelWon = false;
     this.characterDie = false;
+    this.background = new Background(this.game);
+    this.player = new Character(this.game);
+    this.player.velocity = {x: 0, y: 0};
+    this.lake = new Lake(this.game);
+    this.end = new FinishPoint(this.game);
+    this.controller = new Controller(this.game, this.player);
+    this.platforms = [];
+    this.randomizePlatforms();
+    this.drawGame();
   }
+
 
   randomizePlatforms() {
     //floor left and righ
@@ -15,12 +23,12 @@ class Level1 {
     this.platforms.push(new Platform(this, { x: 500, y: 320, width: 100, height: 50 }));
   }
 
-  drawLevel1() {
+  drawGame() {
     this.background.drawBackground();
     for (let platform of this.platforms) platform.drawPlatforms();
     this.lake.drawLake();
     this.end.drawEnd();
     this.player.drawCharacter();
   }
-  
+
 }

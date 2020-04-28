@@ -1,6 +1,3 @@
-const waterImage = new Image();
-waterImage.src = '/image/water-image.png';
-
 const checkFall = (first, second) => {
   const intersectionDirections = [];
   const intersectionAxis = [];
@@ -24,7 +21,7 @@ class Lake {
   constructor(game) {
     this.game = game;
     this.position = { x: 200, y: 450 };
-    this.dimensions = { x: 450, y: 500 };
+    this.dimensions = { x: 450, y: 50 };
   }
 
   checkFall(player) {
@@ -42,8 +39,6 @@ class Lake {
       dimensions: { x: width, y: height }
     } = this;
     context.save();
-
-    
 
     context.fillStyle = '#00BFFF';
     context.fillRect(x, y, width, height);
