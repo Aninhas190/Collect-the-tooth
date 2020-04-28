@@ -1,8 +1,11 @@
+const toothImage = new Image();
+toothImage.src = '/image/human-tooth-drawing.jpg'
+
 class FinishPoint {
   constructor(game) {
     this.game = game
-    this.position = { x: 750, y: 350};
-    this.dimension = { x: 800, y: 450};
+    this.position = { x: 750, y: 400};
+    this.dimension = { x: 50, y: 50};
   }
 
 
@@ -13,10 +16,12 @@ class FinishPoint {
       dimension: {x: width, y: height}
     } = this;
     context.save();
-
-    context.fillStyle = 'black';
+    context.fillStyle = 'white';
+    context.drawImage(toothImage, x, y, width, height);
+    
+    /*context.fillStyle = 'black';
     context.fillRect(x, y, width, height);
-
+    */
     context.restore();
   }
 }

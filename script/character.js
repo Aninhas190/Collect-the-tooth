@@ -9,8 +9,8 @@ class Character {
       y: 370
     };
     this.dimensions = {
-      x: 90,
-      y: 60
+      x: 50,
+      y: 50
     };
     this.velocity = {
       x: 0,
@@ -18,29 +18,24 @@ class Character {
     };
     this.gravity = 10;
     this.friction = 10;
+    this.width = this.game.width;
   }
 
   jump() { 
     if (this.position.y > 250) {
-      this.velocity.y -= 10;
-    }
+      this.velocity.y -= 8;
+    } 
   }
 
   moveLeft() {
-    if(this.position.x >= 10) {
-      this.velocity.x -= 2;
-    }  
+    this.velocity.x -= 2; 
   }
 
   moveRight() {
-    if (this.position.x <= 890) {
       this.velocity.x += 2;
-    }
   }
 
-  stop() {
-    this.velocity = {x: 0, y: 0};
-  }
+ 
 
   runLogic() {
     const { position, dimensions, velocity, gravity, friction } = this;
@@ -53,7 +48,7 @@ class Character {
       x: position.x + newVelocity.x,
       y: position.y + newVelocity.y
     };
-
+    //check colision with game platforms
     for (let platform of this.game.platforms ) {
       const horizontalIntersection = platform.checkIntersection({
         position: {
@@ -78,6 +73,7 @@ class Character {
         newPosition.x = position.x;
       }
     }
+    //check colision with lake
     const lake = this.game.lake;
     const horizontalWaterIntersection = lake.checkFall({
       position: {
@@ -99,11 +95,16 @@ class Character {
     if (horizontalWaterIntersection) {
       this.game.gameOver();
     }
+
+    
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);
-    
+    //create limits for the charater
+    if(this.position.x <= 0) this.position.x = 0;
+    if(this.position.y <= 0) this.position.y = 0;
+    if(this.position.x + this.dimensions.x >= this.width) this.position.x = this.dimensions.x - this.width;
   }
-
+  //draw character
   drawCharacter() {
     const context = this.game.context;
     const {
@@ -111,13 +112,7 @@ class Character {
       dimensions: { x: playerWidth, y: playerHeight }
     } = this;
     context.save();
-    context.beginPath();
-    context.rect(x, y, playerWidth, playerHeight);
-    context.stroke();
     context.drawImage(characterImage, x, y, playerWidth, playerHeight);
-    //window.addEventListener('load', (event) => {
-    //context.drawImage(characterImage, x, y, playerWidth, playerHeight);
-    //});
     context.restore();
   }
 }

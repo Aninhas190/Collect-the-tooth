@@ -1,19 +1,22 @@
 const $canvas = document.querySelector('canvas');
 
+
 const game = new Game($canvas);
 
 
 
-game.drawStartingPoint();
+game.drawStartingPoint(); 
 
 document.addEventListener('keydown', () => {
-  if (event.keyCode === 13) {
-    game.startGame();
+  switch(event.keyCode) {
+    case 13:
+      game.startGame();
+      break;
+    case 8:
+      game.reset();
+      break;  
   }
+  
 })
 
-const $buttonStart = document.getElementById('start');
-const $buttonRestart = document.getElementById('restart');
-/*$buttonRestart.addEventListener('click', () => {
-  game.restart();
-})*/
+

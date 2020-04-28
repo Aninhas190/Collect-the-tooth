@@ -17,18 +17,5 @@ class Controller {
           break;
       }
     });
-
-    document.addEventListener('keyup', (event) => {
-      const keyCode = event.keyCode;
-      event.preventDefault();
-      switch (keyCode) {
-        case 37:
-          this.player.stop();
-          break;
-        case 39:
-          this.player.stop();
-          break;
-      }
-    });
   }
 }
