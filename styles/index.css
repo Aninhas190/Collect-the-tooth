@@ -6,6 +6,9 @@ body {
   align-items: center;
 }
 
+button {
+  margin-top: 1rem;
+}
 /*canvas {
   padding: 8rem
 }*/

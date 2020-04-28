@@ -43,7 +43,7 @@ class Lake {
     } = this;
     context.save();
 
-    //context.drawImage(waterImage, x, y, width, height);
+    
 
     context.fillStyle = '#00BFFF';
     context.fillRect(x, y, width, height);

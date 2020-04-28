@@ -7,9 +7,18 @@ class Game {
     this.levelWon = false;
     this.characterDie = false;
   }
+  
+  drawStartingPoint() {
+    this.context.fillStyle = 'black';
+    this.context.fillRect(0, 0, this.width, this.height);
+    this.context.fillStyle = 'white';
+    this.context.font = '30px sans-serif';
+    this.context.fillText('Press enter to start game', 230, this.height / 2);
+  }
 
   gameOver() {
     this.characterDie = true;
+    this.background.drawGameOver();
   }
 
   startGame() {
@@ -44,6 +53,7 @@ class Game {
     }
   }
 
+  
   drawGame() {
     this.background.drawBackground();
     for (let platform of this.platforms) platform.drawPlatforms();
@@ -61,7 +71,7 @@ class Game {
     } else if (this.levelWon) {
       this.background.drawWin();
     } else {
-      this.background.drawGameOver();
+      this.gameOver();
     }
 
     if (!this.levelWon || !this.characterDie) {

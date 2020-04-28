@@ -16,7 +16,7 @@ class Character {
       x: 0,
       y: 0
     };
-    this.gravity = 15;
+    this.gravity = 10;
     this.friction = 10;
   }
 
@@ -28,13 +28,13 @@ class Character {
 
   moveLeft() {
     if(this.position.x >= 10) {
-      this.velocity.x -= 1.5;
+      this.velocity.x -= 2;
     }  
   }
 
   moveRight() {
     if (this.position.x <= 890) {
-      this.velocity.x += 1.5;
+      this.velocity.x += 2;
     }
   }
 

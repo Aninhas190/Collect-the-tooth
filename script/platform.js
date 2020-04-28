@@ -53,5 +53,14 @@ class Platform {
     context.restore();
   }
 
+  
+  drawLevels() {
+    level1 = `
+    000000000
+    000010010003
+    111222221113
+    `
 
+    
+  }
 }
