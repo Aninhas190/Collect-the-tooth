@@ -45,10 +45,7 @@ class GenericLevel {
     this.end.drawEnd();
     this.player.drawCharacter();
   }
-  /*top: object.position.y,
-  right: object.position.x + object.dimensions.x,
-  bottom: object.position.y + object.dimensions.y,
-  left: object.position.x*/
+
   runLogic() {
     this.player.runLogic();
     if ((this.player.position.y + this.player.dimensions. y > this.end.position.y) &&
