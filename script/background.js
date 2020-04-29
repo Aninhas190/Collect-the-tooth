@@ -33,13 +33,9 @@ class Background {
 
   drawBackground() {
     const context = this.game.context;
-    const height = 600;
-    const width = 1000;
+    const height = 500;
+    const width = 800;
     context.fillStyle = '#66cdaa';
     context.fillRect(0, 0, width, height);
-
-    context.fillStyle = '#C26C36';
-    context.font = '30px sans-serif';
-    context.fillText('Level 1', 5 , 30);
   }
 }

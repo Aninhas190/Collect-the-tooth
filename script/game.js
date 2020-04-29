@@ -4,10 +4,11 @@ class Game {
     this.context = this.$canvas.getContext('2d');
     this.height = this.$canvas.height;
     this.width = this.$canvas.width;
-    this.levelWon = false;
-    this.characterDie = false;
+    this.level = new Level(this);
     this.reset();
   }
+
+  
 
   drawStartingPoint() {
     this.context.fillStyle = 'black';
@@ -18,69 +19,14 @@ class Game {
   }
 
   startGame() {
-    this.loop();
+    this.level.startGame();
+  }
+
+  gameOver(){
+    this.level.gameOver();
   }
 
   reset() {
-    this.characterDie = false;
-    this.background = new Background(this);
-    this.player = new Character(this);
-    this.player.velocity = {x: 0, y: 0};
-    this.lake = new Lake(this);
-    this.end = new FinishPoint(this);
-    this.controller = new Controller(this, this.player);
-    this.platforms = [];
-    this.randomizePlatforms();
-    this.drawGame();
-  }
-
-  gameOver() {
-    this.characterDie = true;
-    this.background.drawGameOver();
-  }
-
-  clearCanvas() {
-    this.context.clearRect(0, 0, this.width, this.height);
-  }
-
-  randomizePlatforms() {
-    //floor left and righ
-    this.platforms.push(new Platform(this, { x: 0, y: 450, width: 200, height: 500 }));
-    this.platforms.push(new Platform(this, { x: 650, y: 450, width: 800, height: 500 }));
-    //platforms
-    this.platforms.push(new Platform(this, { x: 250, y: 320, width: 100, height: 50 }));
-    this.platforms.push(new Platform(this, { x: 500, y: 320, width: 100, height: 50 }));
-  }
-
-  drawGame() {
-    this.background.drawBackground();
-    for (let platform of this.platforms) platform.drawPlatforms();
-    this.lake.drawLake();
-    this.end.drawEnd();
-    this.player.drawCharacter();
-  }
-
-  runLogic() {
-    this.player.runLogic();
-    if (this.player.position.x + this.player.dimensions.x >= this.end.position.x) {
-      //the character won
-      this.levelWon = true;
-    }
-  }
-
-  loop() {
-    this.clearCanvas();
-    this.runLogic();
-    if (!this.levelWon && !this.characterDie) {
-      this.drawGame();
-    } else if (this.levelWon) {
-      this.background.drawWin();
-    } else {
-      this.gameOver();
-    }
-
-    if (!this.levelWon || !this.characterDie) {
-      window.requestAnimationFrame((timestamp) => this.loop(timestamp));
-    }
+    this.level.reset();
   }
 }

@@ -16,7 +16,6 @@ class FinishPoint {
       dimension: {x: width, y: height}
     } = this;
     context.save();
-    context.fillStyle = 'white';
     context.drawImage(toothImage, x, y, width, height);
     
     /*context.fillStyle = 'black';

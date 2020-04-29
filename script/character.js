@@ -49,7 +49,7 @@ class Character {
       y: position.y + newVelocity.y
     };
     //check colision with game platforms
-    for (let platform of this.game.platforms ) {
+    for (let platform of this.game.level.platforms ) {
       const horizontalIntersection = platform.checkIntersection({
         position: {
           ...position,
@@ -74,7 +74,7 @@ class Character {
       }
     }
     //check colision with lake
-    const lake = this.game.lake;
+    const lake = this.game.level.lake;
     const horizontalWaterIntersection = lake.checkFall({
       position: {
         ...position,
