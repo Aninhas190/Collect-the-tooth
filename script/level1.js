@@ -8,8 +8,8 @@ class Level1 extends GenericLevel {
     this.player.position.y = 370;
     */
     
-   this.player.position.x = 0;
-   this.player.position.y = 0;
+    this.player.position.x = 0;
+    this.player.position.y = 0;
 
     //floor left and right
     this.platforms.push(new Platform(this.game, { x: 0, y: 450, width: 200, height: 500 }));

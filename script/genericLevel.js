@@ -7,6 +7,14 @@ class GenericLevel {
     this.reset();
   }
 
+  drawStartingPoint() {
+    this.context.fillStyle = 'black';
+    this.context.fillRect(0, 0, this.width, this.height);
+    this.context.fillStyle = 'white';
+    this.context.font = '30px sans-serif';
+    this.context.fillText('Press enter to start game', 230, this.height / 2);
+  }
+
   startGame() {
     this.loop();
   }
@@ -20,7 +28,7 @@ class GenericLevel {
 
     this.setup();
   }
-  
+
   gameOver() {
     this.characterDie = true;
     this.background.drawGameOver();
@@ -37,10 +45,14 @@ class GenericLevel {
     this.end.drawEnd();
     this.player.drawCharacter();
   }
-
+  /*top: object.position.y,
+  right: object.position.x + object.dimensions.x,
+  bottom: object.position.y + object.dimensions.y,
+  left: object.position.x*/
   runLogic() {
     this.player.runLogic();
-    if (this.player.position.x + this.player.dimensions.x >= this.end.position.x) {
+    if ((this.player.position.y + this.player.dimensions. y > this.end.position.y) &&
+      (this.player.position.x + this.player.dimensions.x > this.end.position.x)){
       //the character won
       this.levelWon = true;
     }
