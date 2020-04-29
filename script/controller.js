@@ -1,19 +1,20 @@
 class Controller {
-  constructor(game, player) {
+  constructor(game) {
     this.game = game;
-    this.player = player;
+
     document.addEventListener('keydown', (event) => {
+      const player = game.currentLevel.player;
       const keyCode = event.keyCode;
       event.preventDefault();
       switch (keyCode) {
         case 32:
-          this.player.jump();
+          player.jump();
           break;
         case 37:
-          this.player.moveLeft();
+          player.moveLeft();
           break;
         case 39:
-          this.player.moveRight();
+          player.moveRight();
           break;
       }
     });

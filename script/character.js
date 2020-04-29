@@ -2,11 +2,12 @@ const characterImage = new Image();
 characterImage.src = '/image/characterStanding.png';
 
 class Character {
-  constructor(game) {
-    this.game = game;
+  constructor(level) {
+    this.level = level;
+    this.game = level.game;
     this.position = {
       x: 0,
-      y: 370
+      y: 0
     };
     this.dimensions = {
       x: 50,
@@ -17,25 +18,23 @@ class Character {
       y: 0
     };
     this.gravity = 10;
-    this.friction = 10;
+    this.friction = 5;
     this.width = this.game.width;
   }
 
-  jump() { 
-    if (this.position.y > 250) {
+  jump() {
+    if (this.velocity.y >= 0) {
       this.velocity.y -= 8;
-    } 
+    }
   }
 
   moveLeft() {
-    this.velocity.x -= 2; 
+    this.velocity.x -= 2;
   }
 
   moveRight() {
-      this.velocity.x += 2;
+    this.velocity.x += 2;
   }
-
- 
 
   runLogic() {
     const { position, dimensions, velocity, gravity, friction } = this;
@@ -48,8 +47,9 @@ class Character {
       x: position.x + newVelocity.x,
       y: position.y + newVelocity.y
     };
+
     //check colision with game platforms
-    for (let platform of this.game.level.platforms ) {
+    for (let platform of this.level.platforms) {
       const horizontalIntersection = platform.checkIntersection({
         position: {
           ...position,
@@ -74,7 +74,7 @@ class Character {
       }
     }
     //check colision with lake
-    const lake = this.game.level.lake;
+    const lake = this.level.lake;
     const horizontalWaterIntersection = lake.checkFall({
       position: {
         ...position,
@@ -96,18 +96,20 @@ class Character {
       this.game.gameOver();
     }
 
-    
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);
     //create limits for the charater
-    if(this.position.x <= 0) this.position.x = 0;
-    if(this.position.y <= 0) this.position.y = 0;
-    if(this.position.x + this.dimensions.x >= this.width) this.position.x = this.dimensions.x - this.width;
+    if (this.position.x <= 0) this.position.x = 0;
+    if (this.position.y <= 0) this.position.y = 0;
+    if (this.position.x + this.dimensions.x >= this.width) {
+      this.position.x = this.dimensions.x - this.width;
+    }
   }
+
   //draw character
   drawCharacter() {
     const context = this.game.context;
-    const {
+    let {
       position: { x, y },
       dimensions: { x: playerWidth, y: playerHeight }
     } = this;

@@ -27,8 +27,7 @@ class Background {
     
     context.fillStyle = 'black';
     context.font = "80px sans-serif";
-    context.fillText('Level 1', 300, 200);
-    context.fillText('Completed', 250, 260)
+    context.fillText('Game Finished', 300, 200);
   }
 
   drawBackground() {

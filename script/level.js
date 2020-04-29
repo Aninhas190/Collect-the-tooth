@@ -1,29 +1,24 @@
-class Level {
-  constructor (game) {
+class GenericLevel {
+  constructor(game) {
     this.game = game;
     this.context = this.game.context;
     this.height = this.game.height;
     this.width = this.game.width;
-    this.levelWon = false;
-    this.characterDie = false;
     this.reset();
   }
-  
+
   startGame() {
     this.loop();
   }
 
   reset() {
+    this.levelWon = false;
     this.characterDie = false;
     this.background = new Background(this.game);
-    this.player = new Character(this.game);
-    this.player.velocity = {x: 0, y: 0};
-    this.lake = new Lake(this.game);
-    this.end = new FinishPoint(this.game);
-    this.controller = new Controller(this.game, this.player);
+    this.player = new Character(this);
     this.platforms = [];
-    this.randomizePlatforms();
-    this.drawGame();
+
+    this.setup();
   }
 
   gameOver() {
@@ -33,15 +28,6 @@ class Level {
 
   clearCanvas() {
     this.context.clearRect(0, 0, this.width, this.height);
-  }
-
-  randomizePlatforms() {
-    //floor left and righ
-    this.platforms.push(new Platform(this.game, { x: 0, y: 450, width: 200, height: 500 }));
-    this.platforms.push(new Platform(this.game, { x: 650, y: 450, width: 800, height: 500 }));
-    //platforms
-    this.platforms.push(new Platform(this.game, { x: 250, y: 320, width: 100, height: 50 }));
-    this.platforms.push(new Platform(this.game, { x: 500, y: 320, width: 100, height: 50 }));
   }
 
   drawGame() {
@@ -61,19 +47,22 @@ class Level {
   }
 
   loop() {
-    this.clearCanvas();
     this.runLogic();
-    if (!this.levelWon && !this.characterDie) {
-      this.drawGame();
-    } else if (this.levelWon) {
-      this.background.drawWin();
-    } else {
+    this.clearCanvas();
+    this.drawGame();
+    if (this.levelWon) {
+      const indexOfCurrentLevel = this.game.levels.findIndex((level) => level === this);
+      const nextLevel = this.game.levels[indexOfCurrentLevel + 1];
+      if (nextLevel) {
+        this.game.currentLevel = nextLevel;
+        this.game.currentLevel.startGame();
+      } else {
+        this.background.drawWin();
+      }
+    } else if (this.characterDie) {
       this.gameOver();
-    }
-
-    if (!this.levelWon || !this.characterDie) {
+    } else {
       window.requestAnimationFrame((timestamp) => this.loop(timestamp));
     }
   }
-
 }
