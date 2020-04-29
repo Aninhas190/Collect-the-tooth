@@ -1,5 +1,5 @@
 const toothImage = new Image();
-toothImage.src = '/image/human-tooth-drawing.jpg'
+toothImage.src = '/image/tooth.png'
 
 class FinishPoint {
   constructor(game) {
@@ -15,6 +15,7 @@ class FinishPoint {
       position: { x, y},
       dimension: {x: width, y: height}
     } = this;
+
     context.save();
     context.drawImage(toothImage, x, y, width, height);
     

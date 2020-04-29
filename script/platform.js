@@ -46,10 +46,6 @@ class Platform {
     context.save();
     context.drawImage(platformImage, x, y, width, height);
 
-    /*
-    context.fillStyle = '#006b3c';
-    context.fillRect(x, y, width, height);
-    */
     context.restore();
   }
   

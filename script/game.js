@@ -12,17 +12,6 @@ class Game {
     this.reset();
   }
 
-  /*
-  checkLevel() {
-    if (this.level === this.level.levelWon) {
-      //this.currentLevel = this.level1;
-      this.reset();
-      this.level1.startGame();
-      console.log('this run');
-    }
-  }
-  */
-
   drawStartingPoint() {
     this.context.fillStyle = 'black';
     this.context.fillRect(0, 0, this.width, this.height);

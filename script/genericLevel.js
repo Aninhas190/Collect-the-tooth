@@ -7,6 +7,14 @@ class GenericLevel {
     this.reset();
   }
 
+  drawStartingPoint() {
+    this.context.fillStyle = 'black';
+    this.context.fillRect(0, 0, this.width, this.height);
+    this.context.fillStyle = 'white';
+    this.context.font = '30px sans-serif';
+    this.context.fillText('Press enter to start game', 230, this.height / 2);
+  }
+
   startGame() {
     this.loop();
   }
@@ -20,7 +28,7 @@ class GenericLevel {
 
     this.setup();
   }
-
+  
   gameOver() {
     this.characterDie = true;
     this.background.drawGameOver();
