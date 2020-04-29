@@ -2,15 +2,6 @@ class Background {
   constructor(game) {
     this.game = game;
   }
-  
-  drawStartingPoint() {
-    console.log('this ran');
-    this.context.fillStyle = 'black';
-    this.context.fillRect(0, 0, this.width, this.height);
-    this.context.fillStyle = 'white';
-    this.context.font = '30px sans-serif';
-    this.context.fillText('Press enter to start game', 230, this.height / 2);
-  }
 
   drawGameOver() {
     const context = this.game.context;
