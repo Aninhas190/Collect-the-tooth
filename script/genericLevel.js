@@ -20,7 +20,7 @@ class GenericLevel {
     this.characterDie = false;
     this.background = new Background(this.game);
     this.player = new Character(this);
-    this.child = new Child(this);
+    this.child = new Child(this.game);
     this.platforms = [];
     this.cars = [];
 
@@ -41,8 +41,8 @@ class GenericLevel {
     for (let car of this.cars) car.drawCar();
     for (let platform of this.platforms) platform.drawPlatforms();
     this.end.drawEnd();
-    this.child.drawChild();
     this.player.drawCharacter();
+    this.child.drawChild();
   }
 
   runLogic() {

@@ -101,6 +101,15 @@ class Character {
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);
     
+    const child = this.level.child;
+    if ((this.position.y + this.dimensions.y > child.position.y) &&
+    (this.position.x + this.dimensions.x > child.position.x) && 
+    (this.position.y < child.position.y + child.dimensions.y) && 
+    (this.position.x < child.position.x + child.dimensions.x)){
+      this.level.characterDie = true;
+    }
+
+
     //create limits for the charater
     if (this.position.x <= 0) this.position.x = 0;
     if (this.position.y <= 0) this.position.y = 0;
@@ -108,13 +117,6 @@ class Character {
       this.position.x = this.dimensions.x - this.width;
     }
     
-    const child = this.level.child;
-    if ((this.position.y + this.dimensions.y > child.position.y) &&
-    (this.position.x + this.dimensions.x > child.position.x) && 
-    (this.position.y < child.position.y + child.dimensions.y) && 
-    (this.position.x < child.position.x + child.dimensions.x)){
-    this.characterDie = true;
-  }
 
   }
 

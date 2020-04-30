@@ -15,7 +15,8 @@ class Child {
     } = this;
 
     context.save();
-    context.drawImage(childImage, x, y, childWidth, childHeight);
+
+    context.drawImage(childImage, x, y + 5, childWidth, childHeight);
 
     context.restore();
   }
