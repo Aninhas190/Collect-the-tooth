@@ -24,7 +24,6 @@ class Character {
   }
 
   jump() {
-    debugger;
     if (this.velocity.y === 0 && !this.jumping) {
       this.jumping = true;
       this.velocity.y -= 8;

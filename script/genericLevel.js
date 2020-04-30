@@ -1,3 +1,5 @@
+
+
 class GenericLevel {
   constructor(game) {
     this.game = game;
@@ -12,7 +14,7 @@ class GenericLevel {
     this.gameStarted = true;
     this.loop();
   }
-
+  
   reset() {
     this.levelWon = false;
     this.characterDie = false;

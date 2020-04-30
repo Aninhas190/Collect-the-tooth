@@ -1,3 +1,5 @@
+const gameSound = new Audio('/audio/Worldmap Theme_0.mp3');
+const gameOverSound = new Audio('/audio/pixie-go.mp3');
 class Game {
   constructor($canvas) {
     this.$canvas = $canvas;
@@ -10,7 +12,6 @@ class Game {
     this.controller = new Controller(this);
 
     this.gameStarted = false;
-
     this.reset();
   }
 
@@ -24,14 +25,19 @@ class Game {
 
   startGame() {
     this.gameStarted = true;
+    gameSound.play()
     this.currentLevel.startGame();
   }
 
-  gameOver() {
+  gameOver() { 
+    gameSound.pause();
+    gameOverSound.play();
     this.currentLevel.gameOver();
   }
 
   reset() {
+    gameOverSound.pause();
+    gameSound.play();
     this.currentLevel.reset();
     this.currentLevel.startGame();
   }
