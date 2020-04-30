@@ -4,6 +4,7 @@ class GenericLevel {
     this.context = this.game.context;
     this.height = this.game.height;
     this.width = this.game.width;
+    
     this.reset();
   }
 
@@ -16,6 +17,7 @@ class GenericLevel {
   }
 
   startGame() {
+    this.gameStarted = true;
     this.loop();
   }
 
@@ -59,6 +61,9 @@ class GenericLevel {
     this.runLogic();
     this.clearCanvas();
     this.drawGame();
+    if (!this.game.gameStarted) {
+      this.drawStartingPoint();
+    }
     if (this.levelWon) {
       const indexOfCurrentLevel = this.game.levels.findIndex((level) => level === this);
       const nextLevel = this.game.levels[indexOfCurrentLevel + 1];

@@ -9,6 +9,8 @@ class Game {
 
     this.controller = new Controller(this);
 
+    this.gameStarted = false;
+
     this.reset();
   }
 
@@ -21,6 +23,7 @@ class Game {
   }
 
   startGame() {
+    this.gameStarted = true;
     this.currentLevel.startGame();
   }
 

@@ -5,7 +5,7 @@ class Level2 extends GenericLevel {
 
     this.player.position.x = 0;
     this.player.position.y = 0;
-
+    
     this.lake.position.x = 100;
     this.lake.dimensions.x = 800;
 

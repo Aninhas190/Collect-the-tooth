@@ -14,7 +14,7 @@ class Background {
     context.font = "80px sans-serif";
     context.fillText('Game Over!', 200, 250);
     context.font = '40px sans-serif'
-    context.fillText('Press Backspace/Delete to Reset Game!', 50, 300);
+    context.fillText('Press Backspace/Delete to Reset level!', 50, 300);
   }
 
   drawWin() {
