@@ -41,7 +41,7 @@ class Game {
     this.context.font = '30px Roboto';
     this.context.fillText('Press enter to start game', 230, 430);
     
-    document.addEventListener('load', event => {
+    window.addEventListener('load', event => {
       this.context.drawImage(childImage1, 310, 175, 30, 30);
       this.context.drawImage(carImage1, 450, 225, 35, 30);
       this.context.drawImage(toothImage1, 305, 278, 25, 25);
