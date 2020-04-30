@@ -28,15 +28,15 @@ class Background {
     
     context.fillStyle = 'white';
     context.font = "80px sans-serif";
-    context.fillText('You Won', 150, 200);
+    context.fillText('You Won', 250, 200);
     
     context.font = "30px sans-serif";
-    context.fillText('Your mission is finished', 50, 300);
+    context.fillText('Your mission is Completed!', 250, 300);
     
-    context.fillText('You were able to collect the tree tooths', 180, 350)
+    context.fillText('You were able to collect the tree teeth!', 150, 350);
 
-    context.font= '15px sans-serif'
-    context.fillText('Thank you for your service', 550, 400);
+    context.font= '30px sans-serif';
+    context.fillText('Until next time👋', 310, 400);
   }
 
   drawBackground() {
