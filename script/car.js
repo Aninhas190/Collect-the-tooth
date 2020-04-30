@@ -1,3 +1,6 @@
+const car = new Image();
+car.src = '/image/car.png';
+
 const checkFall = (first, second) => {
   const intersectionDirections = [];
   const intersectionAxis = [];
@@ -17,7 +20,7 @@ const getCoordinatesFall = (object) => ({
   ...object
 });
 
-class Lake {
+class Car {
   constructor(game, {x, y, width, height}) {
     this.game = game;
     this.position = { x, y };
@@ -25,23 +28,23 @@ class Lake {
   }
 
   checkFall(player) {
-    const lake = this;
+    const car = this;
     const playerBlock = getCoordinatesFall(player);
-    const lakeBlock = getCoordinatesFall(lake);
-    const intersection = checkFall(playerBlock, lakeBlock);
+    const carBlock = getCoordinatesFall(car);
+    const intersection = checkFall(playerBlock, carBlock);
     return intersection;
   }
 
-  drawLake() {
+  drawCar() {
     const context = this.game.context;
     let {
       position: { x, y },
       dimensions: { x: width, y: height }
     } = this;
     context.save();
-
-    context.fillStyle = '#00BFFF';
-    context.fillRect(x, y, width, height);
+    context.fillStyle = '#01182A';
+    context.fillRect(0, 0, width, height);
+    context.drawImage(car, x, y, width, height);
 
     context.restore();
   }

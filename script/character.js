@@ -75,16 +75,16 @@ class Character {
         newPosition.x = position.x;
       }
     }
-    //check colision with lake
-    for (let lake of this.level.lake) {
-      const horizontalWaterIntersection = lake.checkFall({
+    //check colision with car
+    for (let car of this.level.cars) {
+      const horizontalWaterIntersection = car.checkFall({
         position: {
           ...position,
           x: newPosition.x
         },
         dimensions
       });
-      const verticalWaterIntersection = lake.checkFall({
+      const verticalWaterIntersection = car.checkFall({
         position: {
           ...position,
           y: newPosition.y

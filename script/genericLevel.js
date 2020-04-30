@@ -20,8 +20,9 @@ class GenericLevel {
     this.characterDie = false;
     this.background = new Background(this.game);
     this.player = new Character(this);
+    this.child = new Child(this);
     this.platforms = [];
-    this.lake = [];
+    this.cars = [];
 
     this.setup();
   }
@@ -37,9 +38,10 @@ class GenericLevel {
 
   drawGame() {
     this.background.drawBackground();
-    for (let lake of this.lake) lake.drawLake();
+    for (let car of this.cars) car.drawCar();
     for (let platform of this.platforms) platform.drawPlatforms();
     this.end.drawEnd();
+    this.child.drawChild();
     this.player.drawCharacter();
   }
 
@@ -54,6 +56,13 @@ class GenericLevel {
       //the character won
       this.levelWon = true;
     }
+    const child = this.child
+    if ((this.player.position.y + this.player.dimensions.y > child.position.y) &&
+      (this.player.position.x + this.player.dimensions.x > child.position.x) && 
+      (this.player.position.y < child.position.y + child.dimensions.y) && 
+      (this.player.position.x < child.position.x + child.dimensions.x)){
+      this.characterDie = true;
+    } 
   }
 
   loop() {

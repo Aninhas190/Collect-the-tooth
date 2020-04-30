@@ -6,7 +6,7 @@ class Game {
     this.context = this.$canvas.getContext('2d');
     this.height = this.$canvas.height;
     this.width = this.$canvas.width;
-    this.levels = [new Level1(this), new Level2(this), new Level3(this)];
+    this.levels = [new Level1(this), new Level2(this),new Level3(this)];
     this.currentLevel = this.levels[0];
 
     this.controller = new Controller(this);

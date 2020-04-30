@@ -6,10 +6,15 @@ class Level3 extends GenericLevel {
 
   this.player.position = {x: 650, y: 0}
   
-  
-  this.lake.push(new Lake(this.game, { x: 700, y: 400, width: 100, height: 100 }));
-  this.lake.push(new Lake(this.game, { x: 0, y: 400, width: 650, height: 100 }));
-  
+  for (let i=700; i <= 800; i += 50) {
+    this.cars.push(new Car(this.game, { x: i, y: 400, width: 50, height: 50 }));
+    this.cars.push(new Car(this.game, { x: i, y: 450, width: 50, height: 50 }));
+  }
+
+  for (let i=0; i <=650; i+= 50) {
+    this.cars.push(new Car(this.game, { x: i, y: 400, width: 50, height: 50 }));
+    this.cars.push(new Car(this.game, { x: i, y: 450, width: 50, height: 50 }));
+  }
   //starting platform
   this.platforms.push(new Platform(this.game, {x: 650, y: 370, width: 50, height: 150}));
   

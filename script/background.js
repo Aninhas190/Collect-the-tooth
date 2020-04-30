@@ -1,3 +1,5 @@
+const roomBackground = new Image();
+roomBackground.src = '/image/stars.jpg'
 class Background {
   constructor(game) {
     this.game = game;
@@ -41,7 +43,15 @@ class Background {
     const context = this.game.context;
     const height = 500;
     const width = 800;
-    context.fillStyle = '#66cdaa';
+
+    context.save();
+
+
+    context.fillStyle = '#01182A';
     context.fillRect(0, 0, width, height);
+
+    context.drawImage(roomBackground, 0, 0, width, height);
+
+    context.restore()
   }
 }

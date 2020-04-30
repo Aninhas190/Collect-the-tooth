@@ -1,5 +1,5 @@
 const platformImage = new Image();
-platformImage.src = '/image/Grass.png';
+platformImage.src = '/image/Closet.png';
 
 
 const checkIntersection = (first, second) => {
