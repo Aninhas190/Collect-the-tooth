@@ -48,21 +48,16 @@ class GenericLevel {
   runLogic() {
     this.player.runLogic();
     const end = this.end;
+    const player = this.player;
     //console.log(end);
-    if ((this.player.position.y + this.player.dimensions.y > end.position.y) &&
-      (this.player.position.x + this.player.dimensions.x > end.position.x) && 
-      (this.player.position.y < end.position.y + end.dimension.y) && 
-      (this.player.position.x < end.position.x + end.dimension.x)){
+    if ((player.position.y + player.dimensions.y > end.position.y) &&
+      (player.position.x + player.dimensions.x > end.position.x) && 
+      (player.position.y < end.position.y + end.dimension.y) && 
+      (player.position.x < end.position.x + end.dimension.x)){
       //the character won
       this.levelWon = true;
     }
-    const child = this.child
-    if ((this.player.position.y + this.player.dimensions.y > child.position.y) &&
-      (this.player.position.x + this.player.dimensions.x > child.position.x) && 
-      (this.player.position.y < child.position.y + child.dimensions.y) && 
-      (this.player.position.x < child.position.x + child.dimensions.x)){
-      this.characterDie = true;
-    } 
+    
   }
 
   loop() {
