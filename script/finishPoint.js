@@ -18,10 +18,7 @@ class FinishPoint {
 
     context.save();
     context.drawImage(toothImage, x, y, width, height);
-    
-    /*context.fillStyle = 'black';
-    context.fillRect(x, y, width, height);
-    */
+  
     context.restore();
   }
 }

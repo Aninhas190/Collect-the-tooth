@@ -1,5 +1,6 @@
 const childImage = new Image();
 childImage.src = '/image/sleeping.png'
+
 class Child {
   constructor (game) {
     this.game = game;
