@@ -8,14 +8,6 @@ class GenericLevel {
     this.reset();
   }
 
-  drawStartingPoint() {
-    this.context.fillStyle = 'black';
-    this.context.fillRect(0, 0, this.width, this.height);
-    this.context.fillStyle = 'white';
-    this.context.font = '30px sans-serif';
-    this.context.fillText('Press enter to start game', 230, this.height / 2);
-  }
-
   startGame() {
     this.gameStarted = true;
     this.loop();
@@ -67,7 +59,7 @@ class GenericLevel {
     this.clearCanvas();
     this.drawGame();
     if (!this.game.gameStarted) {
-      this.drawStartingPoint();
+      this.game.drawStartingPoint();
     }
     if (this.levelWon) {
       const indexOfCurrentLevel = this.game.levels.findIndex((level) => level === this);

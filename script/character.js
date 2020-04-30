@@ -20,12 +20,15 @@ class Character {
     this.gravity = 10;
     this.friction = 5;
     this.width = this.game.width;
+    this.jumping = false;
   }
 
   jump() {
-    if (this.velocity.y >= 0) {
+    debugger;
+    if (this.velocity.y === 0 && !this.jumping) {
+      this.jumping = true;
       this.velocity.y -= 8;
-    }
+    }  
   }
 
   moveLeft() {
