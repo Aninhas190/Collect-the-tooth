@@ -74,28 +74,28 @@ class Character {
       }
     }
     //check colision with lake
-    const lake = this.level.lake;
-    const horizontalWaterIntersection = lake.checkFall({
-      position: {
-        ...position,
-        x: newPosition.x
-      },
-      dimensions
-    });
-    const verticalWaterIntersection = lake.checkFall({
-      position: {
-        ...position,
-        y: newPosition.y
-      },
-      dimensions
-    });
-    if (verticalWaterIntersection) {
-      this.game.gameOver();
+    for (let lake of this.level.lake) {
+      const horizontalWaterIntersection = lake.checkFall({
+        position: {
+          ...position,
+          x: newPosition.x
+        },
+        dimensions
+      });
+      const verticalWaterIntersection = lake.checkFall({
+        position: {
+          ...position,
+          y: newPosition.y
+        },
+        dimensions
+      });
+      if (verticalWaterIntersection) {
+        this.game.gameOver();
+      }
+      if (horizontalWaterIntersection) {
+        this.game.gameOver();
+      }
     }
-    if (horizontalWaterIntersection) {
-      this.game.gameOver();
-    }
-
     Object.assign(this.velocity, newVelocity);
     Object.assign(this.position, newPosition);
     //create limits for the charater

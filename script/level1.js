@@ -1,16 +1,16 @@
 class Level1 extends GenericLevel {
   setup() {
-    this.lake = new Lake(this.game);
     this.end = new FinishPoint(this.game);
 
     /*
     this.player.position.x = 650;
     this.player.position.y = 370;
     */
-    
+
     this.player.position.x = 0;
     this.player.position.y = 0;
 
+    this.lake.push(new Lake(this.game, { x: 200, y: 450, width: 450, height: 50 }));
     //floor left and right
     this.platforms.push(new Platform(this.game, { x: 0, y: 450, width: 200, height: 500 }));
     this.platforms.push(new Platform(this.game, { x: 650, y: 450, width: 800, height: 500 }));

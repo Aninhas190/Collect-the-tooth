@@ -27,6 +27,7 @@ class GenericLevel {
     this.background = new Background(this.game);
     this.player = new Character(this);
     this.platforms = [];
+    this.lake = [];
 
     this.setup();
   }
@@ -43,7 +44,7 @@ class GenericLevel {
   drawGame() {
     this.background.drawBackground();
     for (let platform of this.platforms) platform.drawPlatforms();
-    this.lake.drawLake();
+    for (let lake of this.lake) lake.drawLake();
     this.end.drawEnd();
     this.player.drawCharacter();
   }

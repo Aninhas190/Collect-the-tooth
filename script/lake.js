@@ -18,10 +18,10 @@ const getCoordinatesFall = (object) => ({
 });
 
 class Lake {
-  constructor(game) {
+  constructor(game, {x, y, width, height}) {
     this.game = game;
-    this.position = { x: 200, y: 450 };
-    this.dimensions = { x: 450, y: 50 };
+    this.position = { x, y };
+    this.dimensions = { x: width, y: height };
   }
 
   checkFall(player) {
