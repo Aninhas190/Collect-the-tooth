@@ -18,7 +18,9 @@ class Level3 extends GenericLevel {
     this.cars.push(new Car(this.game, { x: i, y: 450, width: 50, height: 50 }));
   }
   //starting platform
-  this.platforms.push(new Platform(this.game, {x: 650, y: 370, width: 50, height: 150}));
+  this.platforms.push(new Platform(this.game, {x: 650, y: 350, width: 50, height: 50}));
+  this.platforms.push(new Platform(this.game, {x: 650, y: 400, width: 50, height: 50}));
+  this.platforms.push(new Platform(this.game, {x: 650, y: 450, width: 50, height: 50}));
   
   //platform
   //joking one
@@ -31,9 +33,13 @@ class Level3 extends GenericLevel {
   this.platforms.push(new Platform(this.game, {x: 450, y: 200, width: 50, height: 50}));
   
   this.platforms.push(new Platform(this.game, {x: 400, y: 100, width: 50, height: 50}));
-  this.platforms.push(new Platform(this.game, {x: 300, y: 200, width: 100, height: 50}));
-  this.platforms.push(new Platform(this.game, {x: 300, y: 0, width: 50, height: 200}));
 
+  this.platforms.push(new Platform(this.game, {x: 300, y: 200, width: 50, height: 50}));
+  this.platforms.push(new Platform(this.game, {x: 350, y: 200, width: 50, height: 50}));
+
+  for (let i= 0; i <= 200; i += 50) {
+    this.platforms.push(new Platform(this.game, {x: 300, y: i, width: 50, height: 50}));
+  }
   this.platforms.push(new Platform(this.game, {x: 400, y: 300, width: 50, height: 50}));
 
   this.platforms.push(new Platform(this.game, {x: 300, y: 350, width: 50, height: 50}))

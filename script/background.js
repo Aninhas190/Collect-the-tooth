@@ -23,20 +23,20 @@ class Background {
     const context = this.game.context;
     const height = 600;
     const width = 1000;
-    context.fillStyle = 'white';
+    context.fillStyle = '#01182A';
     context.fillRect(0, 0, width, height);
     
-    context.fillStyle = 'black';
+    context.fillStyle = 'white';
     context.font = "80px sans-serif";
     context.fillText('You Won', 150, 200);
     
     context.font = "30px sans-serif";
-    context.fillText('Thanks to you the children are not traumatized', 50, 300);
+    context.fillText('Your mission is finished', 50, 300);
     
-    context.fillText('by their teeth anymore', 180, 350)
+    context.fillText('You were able to collect the tree tooths', 180, 350)
 
     context.font= '15px sans-serif'
-    context.fillText('Plus they got some cash', 550, 400);
+    context.fillText('Thank you for your service', 550, 400);
   }
 
   drawBackground() {
