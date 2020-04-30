@@ -1,13 +1,10 @@
 class Level2 extends GenericLevel {
   setup() {
-    this.lake = new Lake(this.game);
     this.end = new FinishPoint(this.game);
 
     this.player.position.x = 0;
     this.player.position.y = 0;
 
-    this.lake.position.x = 100;
-    this.lake.dimensions.x = 800;
 
     this.end.position = { x: 550, y: 50 };
     this.lake.push(new Lake(this.game, { x: 100, y: 450, width: 800, height: 50 }));

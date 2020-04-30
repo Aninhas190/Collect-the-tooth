@@ -10,8 +10,8 @@ class Character {
       y: 0
     };
     this.dimensions = {
-      x: 50,
-      y: 50
+      x: 45,
+      y: 45
     };
     this.velocity = {
       x: 0,

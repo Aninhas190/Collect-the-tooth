@@ -26,7 +26,15 @@ class Background {
     
     context.fillStyle = 'black';
     context.font = "80px sans-serif";
-    context.fillText('Game Finished', 150, 200);
+    context.fillText('You Won', 150, 200);
+    
+    context.font = "30px sans-serif";
+    context.fillText('Thanks to you the children are not traumatized', 50, 300);
+    
+    context.fillText('by their teeth anymore', 180, 350)
+
+    context.font= '15px sans-serif'
+    context.fillText('Plus they got some cash', 550, 400);
   }
 
   drawBackground() {

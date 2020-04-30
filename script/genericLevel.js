@@ -43,8 +43,8 @@ class GenericLevel {
 
   drawGame() {
     this.background.drawBackground();
-    for (let platform of this.platforms) platform.drawPlatforms();
     for (let lake of this.lake) lake.drawLake();
+    for (let platform of this.platforms) platform.drawPlatforms();
     this.end.drawEnd();
     this.player.drawCharacter();
   }
