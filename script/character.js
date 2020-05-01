@@ -113,8 +113,9 @@ class Character {
     //create limits for the charater
     if (this.position.x <= 0) this.position.x = 0;
     if (this.position.y <= 0) this.position.y = 0;
+    console.log(this.width)
     if (this.position.x + this.dimensions.x >= this.width) {
-      this.position.x = this.dimensions.x - this.width;
+      this.position.x = this.width - this.dimensions.x;
     }
     
 
