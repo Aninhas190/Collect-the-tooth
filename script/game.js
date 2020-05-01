@@ -1,11 +1,6 @@
 const gameSound = new Audio('/audio/Worldmap Theme_0.mp3');
 const gameOverSound = new Audio('/audio/pixie-go.mp3');
-const childImage1 = new Image();
-childImage1.src = '/image/sleeping.png'
-const carImage1 = new Image();
-carImage1.src = '/image/car.png'
-const toothImage1 = toothImage;
-toothImage1.src= '/image/tooth.png'
+
 
 class Game {
   constructor($canvas) {
@@ -19,7 +14,6 @@ class Game {
     this.controller = new Controller(this);
     this.score = new Score(this);
     this.gameStarted = false;
-    //this.reset();
   }
 
   drawStartingPoint() {
@@ -42,13 +36,10 @@ class Game {
     this.context.fillText('Press enter to start game', 230, 430);
     
     window.addEventListener('load', event => {
-      this.context.drawImage(childImage1, 310, 175, 30, 30);
-      this.context.drawImage(carImage1, 450, 225, 35, 30);
-      this.context.drawImage(toothImage1, 305, 278, 25, 25);
+      this.context.drawImage(childImage, 310, 175, 30, 30);
+      this.context.drawImage(car, 450, 225, 35, 30);
+      this.context.drawImage(toothImage, 305, 278, 25, 25);
     })
-    this.context.drawImage(childImage1, 310, 175, 30, 30);
-    this.context.drawImage(carImage1, 450, 225, 35, 30);
-    this.context.drawImage(toothImage1, 305, 278, 25, 25);
     
     this.context.restore();
   }

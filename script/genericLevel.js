@@ -55,11 +55,8 @@ class GenericLevel {
       (player.position.y < end.position.y + end.dimension.y) && 
       (player.position.x < end.position.x + end.dimension.x)){
       //the character won
-        debugger;
       this.levelWon = true;
-    
       this.game.score.trueScore++;
- 
     }
     
   }
@@ -68,14 +65,9 @@ class GenericLevel {
     this.runLogic();
     this.clearCanvas();
     this.drawGame();
-    /*if (!this.game.gameStarted) {
-      this.game.drawStartingPoint();
-    }*/
     if (this.levelWon) {
       const indexOfCurrentLevel = this.game.levels.findIndex((level) => level === this);
-      console.log(indexOfCurrentLevel)
       const nextLevel = this.game.levels[indexOfCurrentLevel + 1];
-      console.log(nextLevel)
       if (nextLevel) {
         this.game.currentLevel = nextLevel;
         this.game.currentLevel.startGame();
