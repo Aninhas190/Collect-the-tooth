@@ -1,4 +1,4 @@
-
+const endSound = new Audio('/audio/Well Done CCBY3.ogg')
 
 class GenericLevel {
   constructor(game) {
@@ -80,9 +80,13 @@ class GenericLevel {
         this.game.currentLevel = nextLevel;
         this.game.currentLevel.startGame();
       } else {
+        gameSound.pause();
         this.background.drawWin();
+        endSound.play();
       }
     } else if (this.characterDie) {
+      gameSound.pause();
+      gameOverSound.play();
       this.gameOver();
     } else {
       window.requestAnimationFrame((timestamp) => this.loop(timestamp));
